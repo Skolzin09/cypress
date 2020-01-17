@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-
+//https://eyes.applitools.com/app/test-results/00000251823073736486/?accountId=kVePLF9c2Ueaz5yrgQaDDA~~
 
 context('Actions', () => {
     beforeEach(() => {
@@ -13,6 +13,13 @@ context('Actions', () => {
         });
       cy.visit('https://the-internet.herokuapp.com/')
     })
+
+    afterEach(() => {
+     //   cy.eyesCheckWindow('Contact Form Submission Results');
+        // Close the active test
+        cy.eyesClose();
+    })
+
 
     it('A/B Test',function(){
    
@@ -32,22 +39,12 @@ context('Actions', () => {
             cy.get('[onclick="addElement()"]').click()
          
         }
-    
+        cy.url().should('include','add_remove_elements/')
     })
 
-
-
+    it('Basic Auth',() => {
+       cy.contains('Checkboxes').click()
+       cy.contains(' checkbox 1').click()
+    })
 
 })//final
-
-
-
-it('Basic Auth',function(){
-    cy.contains('Basic Auth').click()
-    const stub = cy.stub()
-
-    cy.on('window:alert', stub)
-    
-
-
-})
